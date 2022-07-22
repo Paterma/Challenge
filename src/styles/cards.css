@@ -1,0 +1,10 @@
+.cards {
+height: 30px;
+margin-left: auto !important;
+margin-right: auto !important;
+margin-top: 5px;
+}
+
+.check {
+font-size: small;
+}

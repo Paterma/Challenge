@@ -3,6 +3,7 @@ import './App.css';
 import { RuxProgress } from '@astrouxds/react'
 import Header from './components/header'
 import Cards from './components/cards'
+import Info from './components/info'
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <div>
         <Header/>
             {/* <RuxProgress /> */}
-            <Cards/>
+            <Info/>
         </div>
  
     </div>

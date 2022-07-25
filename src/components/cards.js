@@ -1,8 +1,8 @@
 import '../styles/cards.css'
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import { useState } from 'react';
 import 'react-bootstrap'
-import Card from 'react-bootstrap/Card';
+// import Card from 'react-bootstrap/Card';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { contactData } from './contact'
 
@@ -15,34 +15,72 @@ function Cards(){
     
     const buttonHandler = () => {
         setIsMessageShown(!isMessageShown);
+        
       };
 
       const showboxHandler = () => {
-        setIsBoxShown(!isBoxShown);
+        setIsBoxShown(!isBoxShown)
+        // setIsBoxShown(id);
        };
+       
+       //                        const errorTime = info.alerts.map
+    //  errorTime.sort(function(a,b) {
+    //     return a - b
+    //  })
 
-    const DisplayData=contactData.map(
-        (info)=>{
+    // info.alerts.errorSeverity.sort
+    
+    const DisplayData = contactData.map(
+        (info) => {
+  
+
             return(
-                
+               
                 <tr>
-                    <td><button style={{ width: '6.5rem', height: '1.5rem', fontSize: '12px'}} onClick={showboxHandler}>
-          {isBoxShown ? "Acknowledge" : "Unacknowledge"}{isBoxShown && <div className="box"><p style={{ fontSize: '13px'}}>{info.alerts[1]}</p></div>}
-    </button></td>
+                   
+
+                    {info.alerts.map((alert) => {
+                    
+                        return (
+
+                            <Fragment>
+                    <td>
+                        <button style={{ width: '6.5rem', height: '1.5rem', fontSize: '12px'}} onClick={showboxHandler}>
+          {isBoxShown ? "Acknowledge" : "Unacknowledge"}{isBoxShown && <div className="box">
+          </div>}
+          
+                 </button>
+                </td>
+
                     <td>{info.contactName}</td>
-                    <td>{info.contactEndTimestamp - info.contactBeginTimestamp}</td>
-                    <td>{info.alerts.errorSeverity}</td>
-                    <td><button style={{ width: '6rem', height: '1.5rem', fontSize: '12px'}} onClick={buttonHandler}>
-          {isMessageShown ? "Hide Details" : "Show Details"}{isMessageShown && <div className="message"><p style={{ fontSize: '13px'}}>{info.contactSatellite}{info.contactDetail}</p></div>}
-    </button></td>
-                </tr>
+                    <td>{alert.errorTime}</td>
+                    <td>{alert.errorSeverity}</td>
+
+                      <td>
+                        <button style={{ width: '6rem', height: '1.5rem', fontSize: '12px'}} onClick={buttonHandler}>
+
+                            <td>{isMessageShown ? "Hide Details" : "Show Details"}{isMessageShown && <div className="message">
+                                
+                                <p style={{ fontSize: '13px'}}>{info.contactSatellite}, {info.contactDetail}</p>
+                        </div>}
+                        </td>
+          
+    </button>
+   </td>
+                            </Fragment>
+                        ) })} 
+                   
+                 
+
+                  
+               </tr>   
             )
         }
     )
- 
+
     return(
         <div>
-            <table class="table table-striped">
+            <table className="table table-striped">
                 <thead>
                     <tr>
                     <th>Acknowledge</th>
@@ -54,7 +92,6 @@ function Cards(){
                 </thead>
                 <tbody>
                  
-                    
                     {DisplayData}
                     
                 </tbody>
@@ -63,6 +100,29 @@ function Cards(){
         </div>
     )
  }
+//  return(
+//     <div>
+//         <table className="table table-striped">
+//             <thead>
+//                 <tr>
+//                 <th>Acknowledge</th>
+//                 <th>Name</th>
+//                 <th>Time</th>
+//                 <th>Severity</th>
+//                 <th>Alert Message</th>
+//                 </tr>
+//             </thead>
+//             <tbody>
+             
+//                 {DisplayData}
+                
+//             </tbody>
+//         </table>
+         
+//     </div>
+// )
+// }
+
 
 // function Cards() {
     // const [isBoxShown, setIsBoxShown] = useState(true);
